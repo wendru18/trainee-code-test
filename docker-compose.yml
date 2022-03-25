@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./client/.
+    ports:
+      - 3000:3000
+    stdin_open: true
+    volumes:
+      - ./client:/app
+    restart: always
+    depends_on:
+      - backend
+
+  backend:
+    restart: always
+    build: ./server/.
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server:/app
