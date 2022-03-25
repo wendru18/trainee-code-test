@@ -1,2 +1,2 @@
 # trainee-code-test
-Tech trainee work sample for 2022 
+Tech trainee work sample for 2022 edition
