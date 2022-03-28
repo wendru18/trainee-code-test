@@ -19,15 +19,27 @@ app.get('/movies', (req, res) => {
 
 //TODO Display a single item based on ID
 app.get('/movies/:id', (req, res) => {
-  const movie = req.params.id;
-  res.json(movie);
-
-  // try {
-  //   res.send(await getOne(req.params.id));
-  // } catch( error ) {
-  //   res.send(error);
-  // }
+  const movieID = req.params.id;
+  // console.log(movieID, movies)
+  // res.json(movieID);
+  try {
+    const movie = getMovie(movieID)
+    console.log('hej', movie)
+    res.send(movie);
+  } catch( error ) {
+    res.send(error);
+  }
 })
+
+const getMovie = (id) => {
+  try {
+    const movie = movies.filter(movie => movie.id === id)
+    console.log('mov', movie)
+    return movie;
+  } catch(error) {
+      console.log(`Cannot fetch restaurant with id: ${id} from db: ${error}`);
+  }
+};
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
