@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const movies = require('./movies.json');
+let movies = require('./movies.json');
 
 // Constants
 const PORT = 8000;
@@ -9,8 +9,10 @@ const HOST = '0.0.0.0';
 
 // App
 const app = express();
+app.use(express.json());
+
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Play your movies on Viaplay!');
 });
 
 app.get('/movies', (req, res) => {
@@ -19,17 +21,68 @@ app.get('/movies', (req, res) => {
 
 //TODO Display a single item based on ID
 app.get('/movies/:id', (req, res) => {
-  const movieID = req.params.id;
-  // console.log(movieID, movies)
-  // res.json(movieID);
-  try {
-    const movie = getMovie(movieID)
-    console.log('hej', movie)
-    res.send(movie);
-  } catch( error ) {
-    res.send(error);
-  }
-})
+  const id = req.params.id;
+  //try catch
+  const fetchMovie = movies.filter(movie => movie.id == id);
+  res.json(fetchMovie);
+});
+
+// TODO Create a new movie item with incremental ID
+app.post('/movies', (req, res) => {
+  const body = req.body;
+  console.log(body);
+
+  const maxId = movies.length > 0
+    ? Math.max(...movies.map(movie => movie.id)) 
+    : 0;
+
+  const newMovie = {
+    id: maxId + 1,
+    description: body.description,
+    sources: body.sources,
+    subtitle: body.subtitle,
+    thumb: body.thumb,
+    title: body.title,
+    genre: body.genre,
+  };
+
+  movies = movies.concat(newMovie);
+  res.json(newMovie);
+}); 
+
+// TODO Delete a movie item based on ID
+app.delete('/movies/:id', (req, res) => {
+  const id = Number(req.params.id);
+  movies = movies.filter(movie => movie.id !== id);
+
+  res.status(204).end();
+
+});
+
+// TODO Update a movie item based on ID
+app.put('/movies/:id', (req, res) => {
+  const body = req.body;
+
+  const updateId = Number(req.params.id);
+
+  const newMovie = {
+    id: updateId,
+    description: body.description,
+    sources: body.sources,
+    subtitle: body.subtitle,
+    thumb: body.thumb,
+    title: body.title,
+    genre: body.genre,
+  };
+
+  movies = movies.map(movie => 
+    movie.id == updateId 
+    ? newMovie : movie
+  );
+
+  res.json(movies);
+
+});
 
 const getMovie = (id) => {
   try {
