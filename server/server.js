@@ -22,14 +22,9 @@ app.get('/movies', (req, res) => {
 //TODO Display a single item based on ID
 app.get('/movies/:id', (req, res) => {
   const id = req.params.id;
+  //try catch
   const fetchMovie = movies.filter(movie => movie.id == id);
   res.json(fetchMovie);
-
-  // try {
-  //   res.send(await getOne(req.params.id));
-  // } catch( error ) {
-  //   res.send(error);
-  // }
 });
 
 // TODO Create a new movie item with incremental ID
@@ -88,6 +83,16 @@ app.put('/movies/:id', (req, res) => {
   res.json(movies);
 
 });
+
+const getMovie = (id) => {
+  try {
+    const movie = movies.filter(movie => movie.id === id)
+    console.log('mov', movie)
+    return movie;
+  } catch(error) {
+      console.log(`Cannot fetch restaurant with id: ${id} from db: ${error}`);
+  }
+};
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

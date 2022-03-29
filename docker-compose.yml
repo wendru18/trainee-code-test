@@ -6,7 +6,8 @@ services:
       - 3000:3000
     stdin_open: true
     volumes:
-      - ./client:/app
+      - ./client/:/app
+      - /client/node_modules
     restart: always
     depends_on:
       - backend
@@ -17,4 +18,5 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./server:/app
+      - ./server/:/app
+      - /server/node_modules
