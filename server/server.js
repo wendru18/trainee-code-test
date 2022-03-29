@@ -29,5 +29,13 @@ app.get('/movies/:id', (req, res) => {
   // }
 })
 
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+
+/* catch accessing non-existent endpoints */
+app.use((req, res) => {
+  res.status(404).send({ error: "You tried to access an unknown endpoint!" });
+});
+
+
+app.listen(PORT, HOST, () => {
+  console.log(`Running on http://${HOST}:${PORT}`);
+});
