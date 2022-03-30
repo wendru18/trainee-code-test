@@ -6,7 +6,8 @@ Tech trainee work sample for 2022 edition
 In the project directory, you can run:
 
 ### Docker setup
-
+1. From the root folder, run docker-compose build
+2. Run docker-compose up
 
 ### `npm install`
 To install all dependencies

@@ -23,8 +23,12 @@ app.get('/movies', (req, res) => {
 app.get('/movies/:id', (req, res) => {
   const id = req.params.id;
   //try catch
-  const fetchMovie = movies.filter(movie => movie.id == id);
-  res.json(fetchMovie);
+  try{
+    const fetchMovie = movies.filter(movie => movie.id == id);
+    fetchMovie.length > 0 ? res.json(fetchMovie) : res.status(404).send({ error: `Item with id ${id} does not exist!` });
+  } catch(error) {
+    console.error(`Cannot fetch restaurant with id: ${id} from db: ${error}`);
+  }
 });
 
 // TODO Create a new movie item with incremental ID
