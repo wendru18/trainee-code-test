@@ -6,15 +6,18 @@ Tech trainee work sample for 2022 edition
 In the project directory, you can run:
 
 ### Docker setup
-
-
+1. From the root folder, run docker-compose build
+2. Run docker-compose up
+--- 
+## Setup and running without Docker
 ### `npm install`
-To install all dependencies
+To install all dependencies locally
 
 1. cd into client folder, run npm install 
 2. cd into server folder, run npm install
 
 ### `npm start`
+To run locally, without Docker
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
