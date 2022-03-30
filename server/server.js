@@ -11,100 +11,43 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 
+// Routes
 app.get('/', (req, res) => {
   res.send('Play your movies on Viaplay!');
 });
 
 app.get('/movies', (req, res) => {
+  //@TODO return filtered movies by genre if requested by user, otherwise return all as done below
+  //      look into query params, eg user might call endpoint http://<HOST>:<PORT>/movies?genre=Action
   res.json(movies);
 });
 
-//TODO Display a single item based on ID
 app.get('/movies/:id', (req, res) => {
   const id = req.params.id;
-  //try catch
-  try{
-    const fetchMovie = movies.filter(movie => movie.id == id);
-    fetchMovie.length > 0 ? res.json(fetchMovie) : res.status(404).send({ error: `Item with id ${id} does not exist!` });
-  } catch(error) {
-    console.error(`Cannot fetch restaurant with id: ${id} from db: ${error}`);
-  }
+  //@TODO Fetch a movie item based on ID
 });
 
-// TODO Create a new movie item with incremental ID
+
 app.post('/movies', (req, res) => {
   const body = req.body;
-  console.log(body);
-
-  const maxId = movies.length > 0
-    ? Math.max(...movies.map(movie => movie.id)) 
-    : 0;
-
-  const newMovie = {
-    id: maxId + 1,
-    description: body.description,
-    sources: body.sources,
-    subtitle: body.subtitle,
-    thumb: body.thumb,
-    title: body.title,
-    genre: body.genre,
-  };
-
-  movies = movies.concat(newMovie);
-  res.json(newMovie);
+  //@TODO Create a new movie item with incremental ID
 }); 
 
-// TODO Delete a movie item based on ID
 app.delete('/movies/:id', (req, res) => {
-  const id = Number(req.params.id);
-  movies = movies.filter(movie => movie.id !== id);
-
-  res.status(204).end();
-
+  //@TODO Delete a movie item based on ID
 });
 
-// TODO Update a movie item based on ID
+
 app.put('/movies/:id', (req, res) => {
-  const body = req.body;
-
-  const updateId = Number(req.params.id);
-
-  const newMovie = {
-    id: updateId,
-    description: body.description,
-    sources: body.sources,
-    subtitle: body.subtitle,
-    thumb: body.thumb,
-    title: body.title,
-    genre: body.genre,
-  };
-
-  movies = movies.map(movie => 
-    movie.id == updateId 
-    ? newMovie : movie
-  );
-
-  res.json(movies);
-
+ //@TODO Update a movie item based on ID
 });
-
-const getMovie = (id) => {
-  try {
-    const movie = movies.filter(movie => movie.id === id)
-    console.log('mov', movie)
-    return movie;
-  } catch(error) {
-      console.log(`Cannot fetch restaurant with id: ${id} from db: ${error}`);
-  }
-};
-
 
 /* catch accessing non-existent endpoints */
 app.use((req, res) => {
   res.status(404).send({ error: "You tried to access an unknown endpoint!" });
 });
 
-
+// Run app
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
 });
