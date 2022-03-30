@@ -23,13 +23,11 @@ app.get('/movies', (req, res) => {
 });
 
 app.get('/movies/:id', (req, res) => {
-  const id = req.params.id;
   //@TODO Fetch a movie item based on ID
 });
 
 
 app.post('/movies', (req, res) => {
-  const body = req.body;
   //@TODO Create a new movie item with incremental ID
 }); 
 
