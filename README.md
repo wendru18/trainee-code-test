@@ -26,7 +26,7 @@ const API = new MovieAPI(moviesJson);
 const allMovies = API.fetchAllMovies();
 ```
 
-### Finish the REQUIRED tagged line and 6 of the methods on lines 2 to 11 below:
+### Finish the REQUIRED tagged line and at least 6 of the methods on lines 2 to 11 below:
 1. (REQUIRED) When instantiating the class with the imported movies.json file, add an “id” and a random “rating” from 1-5 for each movie before storing it.
 2. A method that returns movies from a certain genre.
 3. A method that removes a movie with a certain id (if found).
