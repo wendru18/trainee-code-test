@@ -3,7 +3,7 @@
 We are interested in the quality of the implementation rather than the quantity of features. We value originality and creativity. The application and the code should be of such quality so that it can be read and maintained by other developers.
 
 
-Your task is to create a Movie API written as a class using JavaScript that should perform/offer a certain set of methods (listed below). You are to put around **1 hour** on this project. How you solve it is eventually up to you. We will look at everything from readable code, documentation, minimal code duplication, error handling etc. If you are adding tests, then you can use whichever testing framework you’d like, but we recommend [Jest](https://jestjs.io/).
+Your task is to create a Movie API written as a class using JavaScript that should perform/offer a certain set of methods (listed below). You are to put around **1 hour** on this project. How you solve it is eventually up to you. We will look at everything from readable code, documentation, minimal code duplication, error handling etc.
 
 
 You will receive a JSON file containing movie objects, which should be used as input when instantiating the Movie API. Write your code inside the index.js file. An example of how the Movie API could look like:
