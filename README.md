@@ -1,6 +1,6 @@
 # Tech Trainee Code Test
 
-We are interested in the quality of the implementation rather than the number of features. We value originality and creativity. The application and the code should be of such quality so that they can be read and maintained by other developers.
+We are interested in the quality of the implementation rather than the number of features. We value originality and creativity. The application and the code should be of such quality so that it can be read and maintained by other developers.
 
 
 Your task is to create a Movie API written as a class using JavaScript that should perform/offer a certain set of methods (listed below). You are to put around **1 hour** on this project. How you solve it is eventually up to you. We will look at everything from readable code, documentation, minimal code duplication, error handling, etc.
