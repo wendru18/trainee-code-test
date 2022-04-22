@@ -38,4 +38,4 @@ const allMovies = API.fetchAllMovies();
 10. A method that returns a movie with a certain id (if found).
 11. A method that changes the title of a movie with a certain id (if found). The updated title should be sent in as an argument to the method.
 
-When you are done, upload your files to a github repo and send that link to us in an email. Please also write down the amount of time you spent on this.
+When you are done, upload your files to a github repo and send that link to us in an email. Please also write down the amount of time you've spent on this.
