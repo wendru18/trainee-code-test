@@ -6,10 +6,9 @@ We are interested in the quality of the implementation rather than the number of
 Your task is to create a Movie API written as a class using JavaScript that should perform/offer a certain set of methods (listed below). You are to put around **1 hour** on this project. How you solve it is eventually up to you. We will look at everything from readable code, documentation, minimal code duplication, error handling, etc.
 
 
-You will receive a JSON file containing movie objects, which should be used as input when instantiating the Movie API. Write your code inside the index.js file. An example of how the Movie API could look like:
+You will receive a JSON file containing movie objects, which should be used as input when instantiating the Movie API. Write your code inside the index.js file. An example of how such a class could look like:
 
 ```javascript
-// index.js
 const moviesJson = require('./movies.json');
 class MovieAPI {
 	constructor(movies) {
@@ -39,4 +38,4 @@ const allMovies = API.fetchAllMovies();
 10. A method that returns a movie with a certain id (if found).
 11. A method that changes the title of a movie with a certain id (if found). The updated title should be sent in as an argument to the method.
 
-When you are done, hand in the files in a zipped folder.
+When you are done, upload your files to a github repo and send that link to us in an email
