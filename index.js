@@ -17,6 +17,7 @@ class MovieAPI {
 		return this.movies;
 	}
 
+    // A method that returns movies from a certain genre.
     fetchMoviesFromGenre(wanted_genre){
         return this.movies.filter(function(obj) {
             var movie_genre = obj["genre"].toLowerCase();
@@ -25,11 +26,33 @@ class MovieAPI {
             return movie_genre == wanted_genre;
         });
     }
+
+    // A method that removes a movie with a certain id (if found).
+    removeMovie(id){
+        this.movies = this.movies.filter(function(obj) {
+            return obj["id"] !== id;
+        });
+    }
+
+    // A method that returns the movies with the subtitle and thumb properties filtered out.
+    filterSubtitleThumb(){
+        var properties = ["thumb", "subtitle"]
+        return this.movies.filter(function(obj) {
+            for(var prop in properties)
+                delete obj[properties[prop]];
+            return obj;
+        });
+    }
 }
 
 const moviesJson = require('./movies.json');
 const API = new MovieAPI(moviesJson);
-const allMovies = API.fetchAllMovies();
+var allMovies = API.fetchAllMovies();
 
 const comedyMovies = API.fetchMoviesFromGenre("action");
-console.log(comedyMovies.length);
+
+API.removeMovie(id = "0");
+allMovies = API.fetchAllMovies();
+
+console.log(API.filterSubtitleThumb())
+
