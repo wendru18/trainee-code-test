@@ -1,11 +1,11 @@
 class MovieAPI {
 
     // Initialise movie list, mantain a list of properties which are characterised by strings
-	constructor(movies) {
-		this.movies = movies;
+    constructor(movies) {
+        this.movies = movies;
         this.initMovies();
         this.stringProperties = ["title", "description", "subtitle", "thumb", "genre"]
-	}
+    }
 
     // For every movie, init with string ID (based on index) and allocate mock rating
     initMovies(){
