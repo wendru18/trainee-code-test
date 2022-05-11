@@ -1,10 +1,13 @@
 class MovieAPI {
+
+    // Initialise movie list, mantain a list of properties which are characterised by strings
 	constructor(movies) {
 		this.movies = movies;
         this.initMovies();
         this.stringProperties = ["title", "description", "subtitle", "thumb", "genre"]
 	}
 
+    // For every movie, init with string ID (based on index) and allocate mock rating
     initMovies(){
         for(var movie_id in this.movies){
             var movie = this.movies[movie_id]
@@ -13,6 +16,7 @@ class MovieAPI {
         }
     }
 
+    // Mock standardise function - in this case, it simply lowercases string properties
     standardise(p, v){
         if(this.stringProperties.includes(p))
             return v.toLowerCase();
@@ -23,14 +27,17 @@ class MovieAPI {
 		return this.movies;
 	}
 
+    // Fetch all movies with value for property
     fetchMovies(property, value){
         return this.movies.filter(x => this.standardise(property, x[property]) == this.standardise(property, value));
     }
 
+    // Remove movie from API with ID
     removeMovie(id){
-        return this.movies.filter(x => { return x["id"] !== id });
+        this.movies = this.movies.filter(x => { return x["id"] !== id });
     }
 
+    // Filter properties from movies
     filter(properties){
         return this.movies.filter(x => {
             for(var prop in properties)
@@ -40,9 +47,7 @@ class MovieAPI {
         );
     }
 
-    // A method that returns the movies sorted by name.
-    //* property -> "title", "rating", ...
-    //* 0 -> ascending, 1 -> descending
+    // A method that returns the movies sorted by property in order, where 0 -> ascending, 1 -> descending
     sort(property, order){
         return this.movies.sort((a, b) => {
             var movie_a = this.standardise(property, a[property]);
@@ -55,32 +60,35 @@ class MovieAPI {
     }
 
 
-
 }
+
+//! Please uncomment code from each sub-task. Tack!
 
 const moviesJson = require('./movies.json');
 
-// 1. (REQUIRED) When instantiating the class with the imported movies.json file, add an “id” and a random “rating” from 1 to 5 for each movie before storing it.
+//* 1. (REQUIRED) When instantiating the class with the imported movies.json file, add an “id” and a random “rating” from 1 to 5 for each movie before storing it.
 const API = new MovieAPI(moviesJson);
 
-// 2. A method that returns movies from a certain genre.
+//* 2. A method that returns movies from a certain genre.
 
 // actionMovies = API.fetchMovies(property = "genre", value = "action");
 // console.log(actionMovies)
 
-// 3. A method that removes a movie with a certain id (if found).
+//* 3. A method that removes a movie with a certain id (if found).
 
 // var allMovies = API.fetchAllMovies();
 // console.log(allMovies[0]["title"]);
-// allMovies = API.removeMovie(id = "0");
+// API.removeMovie(id = "0");
+
+// allMovies = API.fetchAllMovies();
 // console.log(allMovies[0]["title"]);
 
-// 4. A method that returns the movies with the subtitle and thumb properties filtered out.
+//* 4. A method that returns the movies with the subtitle and thumb properties filtered out.
 
 // fitleredMovies = API.filter(["thumb", "subtitle"]);
 // console.log(fitleredMovies);
 
-// 5. A method that returns the movies sorted by name.
+//* 5. A method that returns the movies sorted by name.
 
 // sortedMoviesByName = API.sort("name", 0);
 // console.log(sortedMoviesByName);
