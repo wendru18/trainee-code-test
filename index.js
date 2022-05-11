@@ -23,9 +23,9 @@ class MovieAPI {
         return v;
     }
 
-	fetchAllMovies(){
-		return this.movies;
-	}
+    fetchAllMovies(){
+        return this.movies;
+    }
 
     // Fetch all movies with value for property
     fetchMovies(property, value){
